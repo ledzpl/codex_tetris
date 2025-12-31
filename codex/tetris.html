@@ -646,10 +646,13 @@
     }
 
     function removeClearedLines() {
+      const clearedCount = clearingRows.length;
       clearingRows.forEach(rowIndex => {
         board.splice(rowIndex, 1);
-        board.unshift(Array(COLS).fill(0));
       });
+      for (let i = 0; i < clearedCount; i += 1) {
+        board.unshift(Array(COLS).fill(0));
+      }
       if (pendingClearCount > 0) {
         addScore(pendingClearCount);
         lines += pendingClearCount;
